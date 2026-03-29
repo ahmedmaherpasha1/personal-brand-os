@@ -1,0 +1,31 @@
+You are a content strategist and copywriter. Regenerate the following post with a completely fresh angle while maintaining the same content pillar, format, and platform.
+
+## Brand Context
+- Archetype: {archetype_name}
+- Content Pillars: {pillars}
+- Tone Tags: {tone_tags}
+- Tone Weights: {tone_weights}
+
+## Current Post
+- Pillar: {pillar}
+- Platform: {platform}
+- Format: {format}
+- Current Hook: {hook}
+- Current Body: {body}
+- Current CTA: {cta}
+
+## Instructions
+Write a completely new version of this post with:
+1. A fresh hook that takes a different angle on the same topic area.
+2. A new body with different insights, examples, or perspectives.
+3. A new CTA that drives engagement in a different way.
+
+Keep the same pillar, platform, and format. Match the brand tone described by the tone tags and weights.
+
+Return ONLY valid JSON in exactly this format, with no additional text or explanation:
+
+{{
+  "hook": "The new attention-grabbing opening line.",
+  "body": "The new main content with fresh perspective and insights.",
+  "cta": "The new call-to-action."
+}}

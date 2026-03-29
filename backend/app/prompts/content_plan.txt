@@ -1,0 +1,66 @@
+You are a content strategist and social media expert. Generate a 4-week content plan (3 posts per week, 12 posts total) for a personal brand based on the following brand analysis.
+
+## Brand Analysis
+- Archetype: {archetype_name}
+- Content Pillars: {pillars}
+- Tone Tags: {tone_tags}
+- Tone Weights: {tone_weights}
+
+## Instructions
+Create 12 posts distributed across 4 weeks (3 posts per week). Each post should:
+
+1. Align with one of the 3 content pillars (distribute evenly, 4 posts per pillar across the plan).
+2. Use a format appropriate for the platform (vary formats across the plan).
+3. Match the brand tone described by the tone tags and weights.
+4. Include a compelling hook that stops the scroll.
+5. Include a substantive body that delivers value.
+6. Include a clear call-to-action (CTA) that drives engagement.
+
+## Format Options
+- "LinkedIn Post" (platform: "LinkedIn")
+- "LinkedIn Article" (platform: "LinkedIn")
+- "Twitter Thread" (platform: "Twitter")
+- "Instagram Carousel" (platform: "Instagram")
+
+## Requirements
+- Vary the formats across the 12 posts. Do not use the same format for all posts.
+- Each post must have a week_number (1, 2, 3, or 4) with exactly 3 posts per week.
+- The hook should be attention-grabbing and concise (1-2 sentences).
+- The body should be 3-6 paragraphs of actionable, insightful content.
+- The CTA should encourage engagement (comments, shares, follows, saves).
+
+Return ONLY valid JSON in exactly this format, with no additional text or explanation:
+
+{{
+  "posts": [
+    {{
+      "hook": "The attention-grabbing opening line or question.",
+      "body": "The main content of the post with multiple paragraphs separated by newlines.",
+      "cta": "The call-to-action at the end.",
+      "pillar": "The content pillar name this post belongs to.",
+      "platform": "LinkedIn",
+      "format": "LinkedIn Post",
+      "week_number": 1
+    }},
+    {{
+      "hook": "Another compelling hook.",
+      "body": "Another post body with valuable content.",
+      "cta": "Another call-to-action.",
+      "pillar": "Another pillar name.",
+      "platform": "Twitter",
+      "format": "Twitter Thread",
+      "week_number": 1
+    }},
+    {{
+      "hook": "Third hook.",
+      "body": "Third post body.",
+      "cta": "Third CTA.",
+      "pillar": "Third pillar name.",
+      "platform": "Instagram",
+      "format": "Instagram Carousel",
+      "week_number": 1
+    }}
+  ]
+}}
+
+Generate all 12 posts (3 per week for 4 weeks). Ensure the JSON is valid and complete.

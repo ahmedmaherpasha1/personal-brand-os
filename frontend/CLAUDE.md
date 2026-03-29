@@ -25,9 +25,11 @@ Runs on http://localhost:5173. Backend expected at http://localhost:8000.
 ```
 frontend/
   src/
-    components/layout/   # AppLayout (sidebar + topbar), ProtectedRoute
-    context/             # AuthContext (user state, login/signup/logout)
-    pages/               # LoginPage, SignupPage, 4 placeholder dashboard pages
+    components/
+      layout/            # AppLayout, ProtectedRoute, OnboardingGuard
+      onboarding/        # StepGoals, StepLinkedIn, StepQuestionnaire
+    context/             # AuthContext (user state, login/signup/logout, onboarding status)
+    pages/               # LoginPage, SignupPage, OnboardingPage, 4 dashboard pages
     services/            # Axios instance with interceptors + refresh token queue
     App.jsx              # Route definitions
     main.jsx             # Entry point

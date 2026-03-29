@@ -55,6 +55,21 @@ export function AuthProvider({ children }) {
     setHasCompletedOnboarding(false);
   };
 
+  const checkOnboardingStatus = useCallback(async () => {
+    try {
+      const { data } = await api.get('/onboarding/status');
+      const complete = data.is_complete ?? false;
+      setHasCompletedOnboarding(complete);
+      return complete;
+    } catch {
+      return false;
+    }
+  }, []);
+
+  const setOnboardingComplete = useCallback(() => {
+    setHasCompletedOnboarding(true);
+  }, []);
+
   const value = {
     user,
     loading,
@@ -63,6 +78,8 @@ export function AuthProvider({ children }) {
     login,
     signup,
     logout,
+    checkOnboardingStatus,
+    setOnboardingComplete,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

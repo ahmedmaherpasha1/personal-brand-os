@@ -12,7 +12,8 @@ from app.models.content_plan import ContentPlan  # noqa: F401
 from app.models.post import Post  # noqa: F401
 from app.models.user import User  # noqa: F401
 from app.models.user_profile import UserProfile  # noqa: F401
-from app.routers import auth
+from app.routers import auth, brand, content, onboarding, publishing
+from app.routers.settings import router as settings_router
 
 logger = logging.getLogger(__name__)
 
@@ -43,6 +44,11 @@ app.add_middleware(
 
 register_exception_handlers(app)
 app.include_router(auth.router)
+app.include_router(onboarding.router)
+app.include_router(brand.router)
+app.include_router(content.router)
+app.include_router(publishing.router)
+app.include_router(settings_router)
 
 
 @app.get("/health")

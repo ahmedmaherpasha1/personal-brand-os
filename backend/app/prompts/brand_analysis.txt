@@ -1,0 +1,58 @@
+You are a personal branding strategist and positioning expert. Analyze the following professional profile and LinkedIn content to create a comprehensive brand analysis.
+
+## Profile Information
+- Industry: {industry}
+- Role: {primary_role}
+- Target Audience: {target_audience}
+- Key Topics: {topics}
+- Desired Brand Voice: {brand_voice}
+- Professional Goals: {goals}
+
+## LinkedIn Content
+{linkedin_posts}
+
+## Instructions
+Based on the profile and content above, generate a brand analysis with the following:
+
+1. **Brand Archetype**: Identify the most fitting brand archetype (e.g., "The Sage", "The Creator", "The Leader", "The Innovator", "The Connector", "The Challenger", "The Guide", "The Visionary") that matches their positioning and voice.
+
+2. **Positioning Statement**: A clear, compelling one-to-two sentence statement that defines who they serve, what unique value they provide, and how they stand apart.
+
+3. **Content Pillars**: Exactly 3 strategic content pillars that align with their expertise, audience needs, and brand archetype. Each pillar needs a Material Symbols icon name (e.g., "psychology", "rocket_launch", "lightbulb", "hub", "trending_up", "school", "handshake", "code", "analytics", "architecture").
+
+4. **Tone Tags**: Exactly 5 adjectives that describe their ideal content tone.
+
+5. **Tone Weights**: A breakdown of tone dimensions with percentage weights that sum to approximately 100. Use dimensions like "Authoritative", "Conversational", "Inspirational", "Educational", "Analytical".
+
+Return ONLY valid JSON in exactly this format, with no additional text or explanation:
+
+{{
+  "archetype_name": "The [Archetype]",
+  "archetype_description": "A 2-3 sentence description of this archetype and why it fits the user.",
+  "positioning_statement": "A compelling positioning statement.",
+  "pillars": [
+    {{
+      "name": "Pillar Name",
+      "icon": "material_symbol_icon_name",
+      "description": "A brief description of this content pillar and what topics it covers."
+    }},
+    {{
+      "name": "Pillar Name",
+      "icon": "material_symbol_icon_name",
+      "description": "A brief description of this content pillar and what topics it covers."
+    }},
+    {{
+      "name": "Pillar Name",
+      "icon": "material_symbol_icon_name",
+      "description": "A brief description of this content pillar and what topics it covers."
+    }}
+  ],
+  "tone_tags": ["adjective1", "adjective2", "adjective3", "adjective4", "adjective5"],
+  "tone_weights": {{
+    "Authoritative": 30,
+    "Conversational": 20,
+    "Inspirational": 20,
+    "Educational": 20,
+    "Analytical": 10
+  }}
+}}

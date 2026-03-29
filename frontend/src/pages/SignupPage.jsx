@@ -30,7 +30,7 @@ export default function SignupPage() {
 
     try {
       await signup(email, password);
-      navigate('/brand-analysis', { replace: true });
+      navigate('/onboarding', { replace: true });
     } catch (err) {
       const message = err.response?.data?.detail ?? 'Could not create account. Please try again.';
       setError(message);

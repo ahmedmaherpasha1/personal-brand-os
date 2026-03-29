@@ -1,9 +1,11 @@
 import asyncio
+import json
 from typing import AsyncGenerator
 
 import pytest
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
+from sqlalchemy import String, Text, TypeDecorator
 from sqlalchemy.dialects.postgresql import ARRAY, JSONB
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from sqlalchemy.dialects.sqlite.base import SQLiteTypeCompiler
@@ -12,6 +14,8 @@ from sqlalchemy.ext.compiler import compiles
 
 from app.core.database import Base, get_db
 from app.main import app
+from app.models.brand_analysis import BrandAnalysis
+from app.models.user_profile import UserProfile
 
 TEST_DATABASE_URL = "sqlite+aiosqlite://"
 
@@ -22,7 +26,6 @@ async_test_session_factory = async_sessionmaker(
 
 
 # Teach SQLite compiler how to render PostgreSQL-specific column types.
-# UUID and JSONB work via @compiles. ARRAY needs a visit_ method on TypeCompiler.
 @compiles(PG_UUID, "sqlite")
 def compile_pg_uuid_sqlite(type_, compiler, **kw):
     return "VARCHAR(36)"
@@ -34,10 +37,16 @@ def compile_jsonb_sqlite(type_, compiler, **kw):
 
 
 def _visit_array(self, type_, **kw):
-    return "TEXT"
+    return "JSON"
 
 
 SQLiteTypeCompiler.visit_ARRAY = _visit_array
+
+
+# Replace the ARRAY(String) column on UserProfile.topics with a JSONB column for SQLite.
+# This avoids the "list type not supported" error when binding parameters.
+UserProfile.__table__.c.topics.type = JSONB()
+BrandAnalysis.__table__.c.tone_tags.type = JSONB()
 
 
 @pytest.fixture(scope="session")

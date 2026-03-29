@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 
 export default function LoginPage() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,17 @@ export default function LoginPage() {
 
     try {
       await login(email, password);
-      navigate('/brand-analysis', { replace: true });
+      // Check onboarding status after login to determine redirect
+      try {
+        const { data } = await api.get('/onboarding/status');
+        if (data.is_complete) {
+          navigate('/brand-analysis', { replace: true });
+        } else {
+          navigate('/onboarding', { replace: true });
+        }
+      } catch {
+        navigate('/onboarding', { replace: true });
+      }
     } catch (err) {
       const message = err.response?.data?.detail ?? 'Invalid email or password. Please try again.';
       setError(message);
